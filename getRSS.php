@@ -22,8 +22,6 @@
     $entries = array_merge($entries, $xml->xpath('/rss/channel/item'));
   }
 
-  print($entries);
-
 
   echo '<ul>';
     foreach ($entries as $entry):
