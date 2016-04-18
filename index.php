@@ -3,6 +3,7 @@
 <!--Sam Shiffman-->
 	<meta charset="UTF-8">
 	<title>RSS Newsfeed</title>
+	<link rel="stylesheet" type="text/css" href="./shiffman_framework.css">
 
 </head>
 <body>
