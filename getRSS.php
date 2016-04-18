@@ -23,7 +23,7 @@
   }
 
 
-  echo '<ul>';
+  echo '<ul class="bullet-none">';
     foreach ($entries as $entry):
       echo '<li>';
         echo '<ul>';
