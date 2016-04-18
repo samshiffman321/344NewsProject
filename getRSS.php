@@ -26,7 +26,7 @@
   echo '<ul class="bullet-none">';
     foreach ($entries as $entry):
       echo '<li>';
-        echo '<ul>';
+        echo '<ul class="bullet-none">';
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';
           echo '<li><a href="' . $entry->link . '">' . $entry->link . '</a></li>';
