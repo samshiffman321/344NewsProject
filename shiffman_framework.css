@@ -96,6 +96,8 @@ html,body {
     font-weight: bold;
     margin:0px;
     padding:0px;
+    background-color: #fff4da;
+  	color: #ab8b74;
 }
 .header {
     background-color: #765848;
