@@ -69,7 +69,7 @@ function showRSS() {
 			console.log(xmlhttp.responseText);
 		}
 	};
-	var url = "http://www.se.rit.edu/~sas5057/NewsProject/getRSS.php?q=" + str;
+	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
 	console.log(url);
 	console.log(document.getElementById("rssOutput").innerHTML);
 	xmlhttp.open("GET",url,true);
