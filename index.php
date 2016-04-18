@@ -3,60 +3,19 @@
 <!--Sam Shiffman-->
 	<meta charset="UTF-8">
 	<title>RSS Newsfeed</title>
-	<script>
-	function showRSS(str) {
-	  if (str.length==0) {
-	    document.getElementById("rssOutput").innerHTML="";
-	    return;
-	  }
-	  if (window.XMLHttpRequest) {
-	    // code for IE7+, Firefox, Chrome, Opera, Safari
-	    xmlhttp=new XMLHttpRequest();
-	  } else {  // code for IE6, IE5
-	    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	  xmlhttp.onreadystatechange=function() {
-	    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-	      document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
-	    }
-	  }
-	  xmlhttp.open("GET","getrss.php?q="+str,true);
-	  xmlhttp.send();
-	}
-	</script>
+
 </head>
 <body>
-	<?php
-
-	  $feeds = array();
 
 
-	  if(isset($_POST['submit'])){//to run PHP script on submit
-	  if(!empty($_POST['check_list'])){
-	  // Loop to store and display values of individual checked checkbox.
-	  foreach($_POST['check_list'] as $selected){
-	  array_push($feeds, $selected);
-	  }
-	  }
-	  }
-
-
-	  $entries = array();
-	  foreach($feeds as $feed) {
-	    $xml = simplexml_load_file($feed);
-	    $entries = array_merge($entries, $xml->xpath('/rss/channel/item'));
-	  }
-
-	 ?>
-
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-		<input type="checkbox" name="check_list[]" value="http://sports.espn.go.com/espn/rss/news"><label>ESPN</label><br/>
-		<input type="checkbox" name="check_list[]" value="http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"><label>NYT</label><br/>
-		<input type="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
-		<input type="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
-		<input type="submit" name="submit" value="Submit"/>
+	<form id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+		<input type="checkbox" class="checkbox" name="check_list[]" value="http://sports.espn.go.com/espn/rss/news"><label>ESPN</label><br/>
+		<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"><label>NYT</label><br/>
+		<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
+		<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 	</form>
 
+	<div id="rssOutput">
 	 <ul>
 		 <?php foreach ($entries as $entry): ?>
 			 <li>
@@ -69,5 +28,56 @@
 			 </li>
 		 <?php endforeach; ?>
 	</ul>
+</div>
+
+<script>
+var checkboxes = document.getElementsByClassName("checkbox");
+
+
+for (var i = 0; i < checkboxes.length; i++){
+	checkboxes[i].addEventListener('click', showRSS);
+}
+
+function showRSS() {
+	console.log("in showRSS");
+	str = "";
+	var checkboxes = document.getElementsByClassName("checkbox");
+	for (var i = 0; i < checkboxes.length; i++){
+		var el = checkboxes[i];
+		if (el.checked) {
+			str += el.value ;
+			if (i != checkboxes.length) str += ",";
+		}
+	}
+
+	if (str.charAt(str.length -1) == ",") {
+		str = str.slice(0, -1);
+	}
+
+
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			console.log("something should happen");
+			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+			console.log(xmlhttp.responseText);
+		}
+	};
+	var url = "http://www.se.rit.edu/~sas5057/NewsProject/getRSS.php?q=" + str;
+	console.log(url);
+	console.log(document.getElementById("rssOutput").innerHTML);
+	xmlhttp.open("GET",url,true);
+	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	console.log(xmlhttp);
+	xmlhttp.send();
+}
+
+</script>
 </body>
 </html>
