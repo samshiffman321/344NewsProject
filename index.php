@@ -16,19 +16,9 @@
 	</form>
 
 	<div id="rssOutput">
-	 <ul>
-		 <?php foreach ($entries as $entry): ?>
-			 <li>
-				 <ul>
-					 <li><?php echo $entry->title ?></li>
-					 <li><?php echo $entry->pubDate ?></li>
-					 <li><?php echo $entry->link ?></li>
-					 <li><?php echo $entry->description ?></li>
-				 </ul>
-			 </li>
-		 <?php endforeach; ?>
-	</ul>
-</div>
+
+
+  </div>
 
 <script>
 var checkboxes = document.getElementsByClassName("checkbox");
