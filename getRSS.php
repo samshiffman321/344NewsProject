@@ -27,9 +27,8 @@
     foreach ($entries as $entry):
       echo '<li>';
         echo '<ul>';
-          echo '<li>' . $entry->title . '</li>';
           echo '<li>' . $entry->pubDate . '</li>';
-          echo '<li>' . $entry->link . '</li>';
+          echo '<li><a href="' . $entry->link . '">' . $entry->title . '</a></li>';
           echo '<li>' . $entry->description . '</li>';
         echo '</ul>';
       echo '</li>';
