@@ -17,7 +17,7 @@
 		</form>
 	</div>
 
-	<div id="rssOutput col-9">
+	<div id="rssOutput" class="col-9">
 
 
   </div>
