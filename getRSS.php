@@ -29,7 +29,7 @@
         echo '<ul class="bullet-none">';
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';
-          echo '<li><a href="' . $entry->link . '">' . $entry->link . '</a></li>';
+          echo '<li><a href="' . $entry->link . '">' . $entry->link . '</a></li></br>';
           echo '<li>' . $entry->description . '</li>';
         echo '</ul>';
       echo '</li></br>';

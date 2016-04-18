@@ -19,6 +19,8 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
+			<div id="loginOutput">
+			</div>
 		</div>
 
 		<div id="rssOutput" class="col-9">
@@ -27,7 +29,7 @@
 	  </div>
 	</div>
 
-<script>
+<script type="text/javascript">
 var checkboxes = document.getElementsByClassName("checkbox");
 
 
@@ -61,19 +63,33 @@ function showRSS() {
 
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			console.log("something should happen");
 			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
-			console.log(xmlhttp.responseText);
 		}
 	};
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
-	console.log(url);
-	console.log(document.getElementById("rssOutput").innerHTML);
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	console.log(xmlhttp);
 	xmlhttp.send();
 }
+
+function login(){
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("loginOutput").innerHTML=xmlhttp.responseText;
+		}
+	};
+	xmlhttp.open("GET","./users.xml",true);
+	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlhttp.send();
+
+}
+login();
 
 </script>
 </body>
