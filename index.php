@@ -19,7 +19,7 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
-			<form id="login" action="login()">
+			<form id="login" action="javascript:login()">
 				<label>Username: </label><input type="text" id="username" name="username">
 				<label>Password: </label><input type="text" id="password" name="password">
 				<input type="submit" value="Login" name="Login">
