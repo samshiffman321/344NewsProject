@@ -87,8 +87,7 @@ function login(username, password){
 	xmlhttp.open("GET","./users.xml",true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
-	var users = loadXMLDoc("users.xml");
-	var xml = users.responseXML;
+	var xml = xmlhttp.responseXML;
 	console.log(xml);
 
 }
