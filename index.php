@@ -84,6 +84,7 @@ function login(username, password){
 			var xml = xmlhttp.responseXML;
 			var users = xml.getElementsByTagName("user");
 			console.log(users);
+			console.log(users.children);
 			for (var item in users.children) {
 				console.log(item);
 			}
