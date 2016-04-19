@@ -21,7 +21,7 @@
 			</form>
 			<form id="login" action="javascript:login()">
 				<label>Username: </label><input type="text" id="username" name="username">
-				<label>Password: </label><input type="text" id="password" name="password">
+				<label>Password: </label><input type="password" id="password" name="password">
 				<input type="submit" value="Login" name="Login">
 			</form>
 			<div id="loginOutput">
