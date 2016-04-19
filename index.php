@@ -81,22 +81,13 @@ function login(username, password){
 	}
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-
-
+			var xml = xmlhttp.responseXML;
+			var users = xml.getElementsByTagName("user");
 			console.log(users);
 			var usernamepath = "";
 			var passwordpath = "";
-			var x = loadXMLDoc("users.xml");
-			var xml = x.responseXML;
-			var users = xml.getElementsByTagName("user");
 			for (var i = 0; i < users.length; i++){
 				console.log(users[i]);
-				usernamepath = "/users["+i+"]/username";
-				passwordpath = "/users["+i+"]/password";
-				usernamenodes = xml.selectNodes(usernamepath);
-				console.log(usernamenodes);
-				passwordnodes = xml.selectNodes(passwordpath);
-				console.log(passwordnodes);
 			}
 		}
 	};
