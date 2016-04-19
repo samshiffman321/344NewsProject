@@ -99,6 +99,7 @@ function login(){
 					document.getElementById("username").value = "";
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
+					console.log(document.cookie);
 					return true;
 				}
 			}
