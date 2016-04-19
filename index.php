@@ -84,10 +84,13 @@ function login(username, password){
 			var xml = xmlhttp.responseXML;
 			var usernames = xml.getElementsByTagName("username");
 			var passwords = xml.getElementsByTagName("password");
-			console.log(usernames);
-			console.log(passwords);
 			for (var i = 0; i < usernames.length; i++){
-				console.log(usernames[i].innerHTML, passwords[i].innerHTML);
+				var uname = usernames[i].innerHTML;
+				var pword = passwords[i].innerHTML;
+				if (uname == username && pword == password){
+					console.log("login true");
+					return true;
+				}
 			}
 		}
 	};
