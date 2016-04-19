@@ -87,7 +87,7 @@ function login(username, password){
 			console.log(usernames);
 			console.log(passwords);
 			for (var i = 0; i < usernames.length; i++){
-				console.log(usernames[i], passwords[i]);
+				console.log(usernames[i].innerHTML, passwords[i].innerHTML);
 			}
 		}
 	};
