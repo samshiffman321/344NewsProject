@@ -19,6 +19,11 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
+			<form id="login" action="login()">
+				<label>Username: </label><input type="text" id="username" name="username">
+				<label>Password: </label><input type="text" id="password" name="password">
+				<input type="submit" value="Login" name="Login">
+			</form>
 			<div id="loginOutput">
 			</div>
 		</div>
@@ -72,7 +77,9 @@ function showRSS() {
 	xmlhttp.send();
 }
 
-function login(username, password){
+function login(){
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
@@ -97,8 +104,6 @@ function login(username, password){
 	xmlhttp.open("GET","./users.xml",true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
-
-
 }
 login("sas5057", "password123");
 
