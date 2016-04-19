@@ -83,7 +83,11 @@ function login(username, password){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			var xml = xmlhttp.responseXML;
 			var users = xml.getElementsByTagName("user");
-			console.log(users);
+			for (var user in users) {
+				if (user.username == username && user.password == password){
+					console.log("login is true");
+				}
+			}
 		}
 	};
 	xmlhttp.open("GET","./users.xml",true);
