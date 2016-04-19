@@ -86,6 +86,7 @@ function login(username, password){
 			for (var user in users) {
 				if (user.username == username && user.password == password){
 					console.log("login is true");
+					console.log(user.username, user.password);
 				}
 			}
 		}
