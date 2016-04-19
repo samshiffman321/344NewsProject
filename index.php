@@ -20,8 +20,8 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
 			<form id="login" action="javascript:login()">
-				<label>Username: </label><input type="text" id="username" name="username">
-				<label>Password: </label><input type="password" id="password" name="password">
+				<label>Username: </label><input type="text" id="username" name="username"></br>
+				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
 			</form>
 			<div id="loginOutput">
@@ -96,6 +96,8 @@ function login(){
 				var pword = passwords[i].innerHTML;
 				if (uname == username && pword == password){
 					console.log("login true");
+					document.getElementById("username").value = "";
+					document.getElementById("password").value = "";
 					return true;
 				}
 			}
