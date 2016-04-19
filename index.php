@@ -84,11 +84,8 @@ function login(username, password){
 			var xml = xmlhttp.responseXML;
 			var users = xml.getElementsByTagName("user");
 			console.log(users);
-			for (var user in users) {
-				if (user.username == username && user.password == password){
-					console.log("login is true");
-					console.log(user.username, user.password);
-				}
+			for (var item in users.children) {
+				console.log(item);
 			}
 		}
 	};
