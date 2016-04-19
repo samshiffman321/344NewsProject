@@ -82,13 +82,11 @@ function login(username, password){
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			var xml = xmlhttp.responseXML;
-			var users = xml.getElementsByTagName("user");
-			console.log(users);
-			var usernamepath = "";
-			var passwordpath = "";
-			for (var i = 0; i < users.length; i++){
-				console.log(users[i].getElementByTagName("username"));
-			}
+			var usernames = xml.getElementsByTagName("username");
+			var passwords = xml.getElementsByTagName("password");
+			console.log(usernames);
+			console.log(passwords);
+			
 		}
 	};
 	xmlhttp.open("GET","./users.xml",true);
