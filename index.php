@@ -84,8 +84,16 @@ function login(username, password){
 			var xml = xmlhttp.responseXML;
 			var users = xml.getElementsByTagName("user");
 			console.log(users);
+			var usernamepath = "";
+			var passwordpath = "";
 			for (var i = 0; i < users.length; i++){
 				console.log(users[i]);
+				usernamepath = "/users["+i+"]/username";
+				passwordpath = "/users["+i+"]/password";
+				usernamenodes = xml.selectNodes(usernamepath);
+				console.log(usernamenodes);
+				passwordnodes = xml.selectNodes(passwordpath);
+				console.log(passwordnodes);
 			}
 		}
 	};
