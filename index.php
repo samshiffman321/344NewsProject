@@ -92,7 +92,7 @@ function login(username, password){
 	console.log(xml);
 
 }
-
+login();
 
 </script>
 </body>
