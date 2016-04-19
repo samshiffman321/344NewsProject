@@ -87,7 +87,7 @@ function login(username, password){
 			var usernamepath = "";
 			var passwordpath = "";
 			for (var i = 0; i < users.length; i++){
-				console.log(users[i]/username);
+				console.log(users[i].username);
 			}
 		}
 	};
