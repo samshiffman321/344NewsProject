@@ -98,7 +98,7 @@ function login(){
 					console.log("login true");
 					document.getElementById("username").value = "";
 					document.getElementById("password").value = "";
-					document.getElementsByTagName("body").focus();
+					document.getElementById("password").blur();
 					return true;
 				}
 			}
