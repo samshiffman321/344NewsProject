@@ -72,7 +72,7 @@ function showRSS() {
 	xmlhttp.send();
 }
 
-function login(){
+function login(username, password){
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
@@ -87,9 +87,12 @@ function login(){
 	xmlhttp.open("GET","./users.xml",true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
+	var users = loadXMLDoc("users.xml");
+	var xml = users.responseXML;
+	console.log(xml);
 
 }
-login();
+
 
 </script>
 </body>
