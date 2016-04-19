@@ -83,10 +83,10 @@ function login(username, password){
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			var xml = xmlhttp.responseXML;
 			var users = xml.getElementsByTagName("user");
-			console.log(users);
-			console.log(users[0].children);
-			for (var item in users.children) {
-				console.log(item);
+			for (var i = 0; i < users.length; i++){
+				for (child in users[i].children){
+					console.log(child);
+				}
 			}
 		}
 	};
