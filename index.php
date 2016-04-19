@@ -82,13 +82,14 @@ function login(username, password){
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			document.getElementById("loginOutput").innerHTML=xmlhttp.responseText;
+			var xml = xmlhttp.responseXML;
+			console.log(xml);
 		}
 	};
 	xmlhttp.open("GET","./users.xml",true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
-	var xml = xmlhttp.responseXML;
-	console.log(xml);
+
 
 }
 login();
