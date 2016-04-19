@@ -81,9 +81,9 @@ function login(username, password){
 	}
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			document.getElementById("loginOutput").innerHTML=xmlhttp.responseText;
 			var xml = xmlhttp.responseXML;
-			console.log(xml);
+			var users = xml.getElementsByTagName("user");
+			console.log(users);
 		}
 	};
 	xmlhttp.open("GET","./users.xml",true);
