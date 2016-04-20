@@ -95,10 +95,13 @@ function login(){
 				var uname = usernames[i].innerHTML;
 				var pword = passwords[i].innerHTML;
 				if (uname == username && pword == password){
-					console.log("login true");
 					document.getElementById("username").value = "";
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
+					var d = new Date();
+					if (document.cookie.length > 0){
+						document.cookie += ";" + username + "=" + d.toUTCString();
+					}
 					console.log(document.cookie);
 					return true;
 				}
