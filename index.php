@@ -102,6 +102,9 @@ function login(){
 					if (document.cookie.length > 0){
 						document.cookie += ";" + username + "=" + d.toUTCString();
 						console.log("test");
+					} else {
+						document.cookie += username + "=" + d.toUTCString();
+						console.log("test");
 					}
 					console.log(document.cookie);
 					return true;
