@@ -98,12 +98,12 @@ function login(){
 					document.getElementById("username").value = "";
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
-					// var d = new Date();
-					// if (document.cookie.length > 0){
-					// 	document.cookie += ";" + username + "=" + d.toUTCString();
-					// 	console.log("test");
-					// }
-					// console.log(document.cookie);
+					var d = new Date();
+					if (document.cookie.length > 0){
+						document.cookie += ";" + username + "=" + d.toUTCString();
+						console.log("test");
+					}
+					console.log(document.cookie);
 					return true;
 				}
 			}
