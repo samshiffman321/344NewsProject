@@ -135,9 +135,11 @@ function changeForms() {
 	var newUserForm = document.getElementById("newUser");
 
 	if (loginForm.getAttribute("hidden") == "true"){
+		console.log("showing login form");
 		loginForm.setAttribute("hidden","false");
 		newUserForm.setAttribute("hidden","true");
 	} else {
+		console.log("showing new user form");
 		loginForm.setAttribute("hidden","true");
 		newUserForm.setAttribute("hidden","false");
 	}
