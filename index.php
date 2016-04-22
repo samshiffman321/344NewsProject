@@ -106,6 +106,7 @@ function login(){
 					} else if (document.cookie.length <= 0) {
 						document.cookie += username + "=" + d.toUTCString();
 					} else {
+						console.log("attempting to update cookie")
 						var cookies = document.cookie.split(";");
 						for (var i = 0; i < cookies.length; i++){
 							res = cookies[i].split("=");
