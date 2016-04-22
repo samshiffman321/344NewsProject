@@ -106,6 +106,7 @@ function login(){
 					} else {
 						document.cookie += username + "=" + d.toUTCString();
 					}
+					console.log(document.cookie);
 					return true;
 				}
 			}
