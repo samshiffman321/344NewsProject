@@ -74,6 +74,7 @@ function showRSS() {
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xmlhttp.send();
 }
 
