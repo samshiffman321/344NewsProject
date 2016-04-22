@@ -23,6 +23,13 @@
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
+				<button name="changeForms" value="changeForms" onclick="javascript:changeForms();">Click here for new user form.</button>
+			</form>
+			<form id="newUser" onsubmit="javascript:newUser(); return false;">
+				<label>Username: </label><input type="text" id="username" name="username"></br>
+				<label>Password: </label><input type="password" id="password" name="password"></br>
+				<label>Retype Password: </label><input type="password" id="passwordConfirm" name="passwordConfirm"></br>
+				<button name="changeForms" value="changeForms" onclick="javascript:changeForms();">Click here for login form.</button>
 			</form>
 			<div id="loginOutput">
 			</div>
@@ -116,6 +123,23 @@ function login(){
 	xmlhttp.open("GET","./users.xml",true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
+}
+
+function newUser() {
+
+}
+
+function changeForms() {
+	var loginForm = document.getElementById("login");
+	var newUserForm = document.getElementById("newUser");
+
+	if (loginForm.getAttribute("hidden") == "true"){
+		loginForm.setAttribute("hidden","false");
+		newUserForm.setAttribute("hidden","true");
+	} else {
+		loginForm.setAttribute("hidden","true");
+		newUserForm.setAttribute("hidden","false");
+	}
 }
 
 
