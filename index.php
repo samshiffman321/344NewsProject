@@ -100,16 +100,13 @@ function login(){
 					document.getElementById("username").value = "";
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
+					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
 					var d = new Date();
-					console.log("initial cookie: ",document.cookie )
-					if (document.cookie.length > 0 ){//&& !document.cookie.includes(username)){
-						console.log("if");
+					if (document.cookie.length > 0 ){
 						document.cookie = username + "=" + d.toUTCString();
 					} else  {
-						console.log("else");
 						document.cookie = username + "=" + d.toUTCString();
 					}
-					console.log("final cookie: ",document.cookie);
 					return true;
 				}
 			}
