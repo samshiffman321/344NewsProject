@@ -23,14 +23,14 @@
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
-				<button type="button" name="changeForms" value="changeForms" onclick="changeForms()">Click here for new user form.</button>
+				<button type="button" name="changeForms" value="changeForms" onclick="changeForms">Click here for new user form.</button>
 			</form>
 			<form id="newUser" onsubmit="javascript:newUser(); return false;" hidden="true">
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<label>Retype Password: </label><input type="password" id="passwordConfirm" name="passwordConfirm"></br>
 				<input type="submit" value="Create" name="Create">
-				<button type="button" name="changeForms" value="changeForms" onclick="changeForms()">Click here for login form.</button>
+				<button type="button" name="changeForms" value="changeForms" onclick="changeForms">Click here for login form.</button>
 			</form>
 			<div id="loginOutput">
 			</div>
