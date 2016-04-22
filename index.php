@@ -102,12 +102,12 @@ function login(){
 					document.getElementById("password").blur();
 					var d = new Date();
 					console.log("initial cookie: ",document.cookie )
-					if (document.cookie.length > 0 && !document.cookie.includes(username)){
+					if (document.cookie.length > 0 ){//&& !document.cookie.includes(username)){
 						console.log("if1");
-						document.cookie += ";" + username + "=" + d.toUTCString();
+						document.cookie = ";" + username + "=" + d.toUTCString();
 					} else if (document.cookie.length <= 0) {
 						console.log("if2");
-						document.cookie += username + "=" + d.toUTCString();
+						document.cookie = username + "=" + d.toUTCString();
 					} else {
 						console.log("if3");
 						var cookies = document.cookie.split(";");
@@ -119,6 +119,7 @@ function login(){
 								cookies[i] = res[0] + "=" + d.toUTCString();
 							}
 						}
+						console.log(cookies)
 						document.cookie = "";
 						for (var i = 0; i < cookies.length; i++){
 							document.cookie = document.cookie + ";" + cookies[i]
