@@ -102,7 +102,7 @@ function login(){
 					document.getElementById("password").blur();
 					var d = new Date();
 					console.log("initial cookie: ",document.cookie )
-					if (document.cookie.length > 0 && !document.cookie.includes("username")){
+					if (document.cookie.length > 0 && !document.cookie.includes(username)){
 						console.log("if1");
 						document.cookie += ";" + username + "=" + d.toUTCString();
 					} else if (document.cookie.length <= 0) {
