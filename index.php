@@ -101,6 +101,7 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					var d = new Date();
+					console.log("initial cookie: ",document.cookie )
 					if (document.cookie.length > 0 && !document.cookie.includes("username")){
 						document.cookie += ";" + username + "=" + d.toUTCString();
 					} else if (document.cookie.length <= 0) {
@@ -119,7 +120,7 @@ function login(){
 							document.cookie = document.cookie + ";" + cookies[i]
 						}
 					}
-					console.log(document.cookie);
+					console.log("final cookie: ",document.cookie);
 					return true;
 				}
 			}
