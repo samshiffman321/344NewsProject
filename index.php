@@ -101,10 +101,22 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					var d = new Date();
-					if (document.cookie.length > 0){
+					if (document.cookie.length > 0 && !document.cookie.includes("username")){
 						document.cookie += ";" + username + "=" + d.toUTCString();
-					} else {
+					} else if (document.cookie.length <= 0) {
 						document.cookie += username + "=" + d.toUTCString();
+					} else {
+						var cookies = document.cookie.split(";");
+						for (var i = 0; i < cookies.length; i++){
+							res = cookies[i].split("=");
+							if (res[0] == username){
+								cookies[i] = res[0] + "=" + d.toUTCString();
+							}
+						}
+						document.cookie = "";
+						for (var i = 0; i < cookies.length; i++){
+							document.cookie = document.cookie + ";" + cookies[i]
+						}
 					}
 					console.log(document.cookie);
 					return true;
