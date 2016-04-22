@@ -101,6 +101,7 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
+					document.getElementById("login").setAttribute("hidden","true");
 					var d = new Date();
 					if (document.cookie.length > 0 ){
 						document.cookie = username + "=" + d.toUTCString();
