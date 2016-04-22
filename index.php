@@ -23,7 +23,7 @@
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
-				<button type="button" name="changeForms" value="changeForms" action="javascript:changeForms();return false;" onclick="javascript:changeForms">Click here for new user form.</button>
+				<button type="button" name="changeForms" value="changeForms" onclick="javascript:changeForms">Click here for new user form.</button>
 			</form>
 			<form id="newUser" onsubmit="javascript:newUser(); return false;" hidden="true">
 				<label>Username: </label><input type="text" id="username" name="username"></br>
@@ -131,6 +131,7 @@ function newUser() {
 }
 
 function changeForms() {
+	console.log("attempting to change forms");
 	var loginForm = document.getElementById("login");
 	var newUserForm = document.getElementById("newUser");
 
