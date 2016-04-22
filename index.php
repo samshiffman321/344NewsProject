@@ -102,12 +102,9 @@ function login(){
 					var d = new Date();
 					if (document.cookie.length > 0){
 						document.cookie += ";" + username + "=" + d.toUTCString();
-						console.log("test");
 					} else {
 						document.cookie += username + "=" + d.toUTCString();
-						console.log("test");
 					}
-					console.log(document.cookie);
 					return true;
 				}
 			}
@@ -117,7 +114,7 @@ function login(){
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
 }
-login("sas5057", "password123");
+
 
 </script>
 </body>
