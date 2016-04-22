@@ -110,11 +110,12 @@ function login(){
 						document.cookie += username + "=" + d.toUTCString();
 					} else {
 						console.log("if3");
-						console.log("attempting to update cookie")
 						var cookies = document.cookie.split(";");
+						console.log(cookies);
 						for (var i = 0; i < cookies.length; i++){
 							res = cookies[i].split("=");
 							if (res[0] == username){
+								console.log(res);
 								cookies[i] = res[0] + "=" + d.toUTCString();
 							}
 						}
