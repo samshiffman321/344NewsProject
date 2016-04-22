@@ -22,7 +22,7 @@
 			<form id="login">
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
-				<input type="submit" value="Login" name="Login" onsubmit="login(); return false;">
+				<input type="submit" value="Login" name="Login" onsubmit="javascript:login(); return false;">
 			</form>
 			<div id="loginOutput">
 			</div>
