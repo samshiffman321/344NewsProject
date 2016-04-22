@@ -103,27 +103,11 @@ function login(){
 					var d = new Date();
 					console.log("initial cookie: ",document.cookie )
 					if (document.cookie.length > 0 ){//&& !document.cookie.includes(username)){
-						console.log("if1");
-						document.cookie = ";" + username + "=" + d.toUTCString();
-					} else if (document.cookie.length <= 0) {
-						console.log("if2");
+						console.log("if");
 						document.cookie = username + "=" + d.toUTCString();
-					} else {
-						console.log("if3");
-						var cookies = document.cookie.split(";");
-						console.log(cookies);
-						for (var i = 0; i < cookies.length; i++){
-							res = cookies[i].split("=");
-							if (res[0] == username){
-								console.log(res);
-								cookies[i] = res[0] + "=" + d.toUTCString();
-							}
-						}
-						console.log(cookies)
-						document.cookie = "";
-						for (var i = 0; i < cookies.length; i++){
-							document.cookie = document.cookie + ";" + cookies[i]
-						}
+					} else  {
+						console.log("else");
+						document.cookie = username + "=" + d.toUTCString();
 					}
 					console.log("final cookie: ",document.cookie);
 					return true;
