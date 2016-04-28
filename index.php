@@ -104,7 +104,7 @@ function addFavorite(e) {
 
 		}
 	};
-	if (document.getElementById("loggedInHidden").checked){
+	if (document.getElementById("loggedInHidden").checked == "true"){
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
 		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -139,7 +139,7 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
-					document.getElementById("loggedInHidden").checked = true;
+					document.getElementById("loggedInHidden").checked = "true";
 					document.getElementById("userHidden").value = uname;
 					var d = new Date();
 					if (document.cookie.length > 0 ){
