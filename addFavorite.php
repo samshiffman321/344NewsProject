@@ -10,6 +10,8 @@
   if ($favoritesJson.count > 0){
     echo $favoritesJson;
   } else {
-    echo $args;
+    foreach($args as $arg){
+      echo $arg;
+    }
   }
  ?>
