@@ -14,6 +14,8 @@
 <form id="hidden" hidden="true">
 	<input type="checkbox" id="loggedInHidden" checked=false hidden="true">
 	<input type="text" id="userHidden" value="">
+	<label id="testHidden" hidden="true"></label>
+
 </form>
 <div class="row">
 		<div class="col-3">
@@ -82,6 +84,7 @@ function showRSS() {
 		}
 	};
 	console.log(document.getElementById("userHidden").value);
+	console.log("test: ", document.getElementById("testHidden").innerHTML);
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -140,6 +143,8 @@ function login(){
 					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
 					document.getElementById("loggedInHidden").checked = true;
 					document.getElementById("userHidden").value = uname;
+					document.getElementById("testHidden").innerHTML = uname;
+
 					var d = new Date();
 					if (document.cookie.length > 0 ){
 						document.cookie = username + "=" + d.toUTCString();
