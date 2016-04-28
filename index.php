@@ -83,8 +83,7 @@ function showRSS() {
 			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
 		}
 	};
-	console.log(document.getElementById("userHidden").value);
-	console.log("test: ", document.getElementById("testHidden").innerHTML);
+
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -109,6 +108,8 @@ function addFavorite(e) {
 		}
 	};
 	console.log(document.getElementById("loggedInHidden").checked)
+	console.log(document.getElementById("userHidden").value);
+	console.log("test: ", document.getElementById("testHidden").innerHTML);
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
