@@ -6,6 +6,6 @@
   if ($favoritesJson.count > 0){
     echo $favoritesJson;
   } else {
-    echo "testing addFavorite.php";
+    echo $q;
   }
  ?>
