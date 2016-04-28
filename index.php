@@ -12,9 +12,8 @@
 	</div>
 
 <form id="hidden" hidden="true">
-	<input type="checkbox" id="loggedInHidden" checked=false hidden="true">
-	<input type="text" id="userHidden" value="">
-	<label id="testHidden" hidden="true"></label>
+	<input type="text" id="loggedInHidden" hidden="true" value="">
+	<input type="text" id="userHidden" value="" hidden="true">
 
 </form>
 <div class="row">
@@ -107,14 +106,18 @@ function addFavorite(e) {
 
 		}
 	};
-	console.log(document.getElementById("loggedInHidden").checked)
+	console.log(document.getElementById("loggedInHidden").value)
 	console.log(document.getElementById("userHidden").value);
-	console.log("test: ", document.getElementById("testHidden").innerHTML);
-	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
-	xmlhttp.open("GET",url,true);
-	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-	xmlhttp.send();
+	if (document.getElementById("loggedInHidden").value == "true") {
+		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
+		xmlhttp.open("GET",url,true);
+		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+		xmlhttp.send();
+	} else {
+		alert("You must be logged in to favorite an article");
+	}
+
 
 
 }
@@ -142,9 +145,8 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
-					document.getElementById("loggedInHidden").checked = true;
+					document.getElementById("loggedInHidden").value = "true";
 					document.getElementById("userHidden").value = uname;
-					document.getElementById("testHidden").innerHTML = uname;
 
 					var d = new Date();
 					if (document.cookie.length > 0 ){
