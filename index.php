@@ -91,7 +91,6 @@ function showRSS() {
 }
 
 function addFavorite(e) {
-	console.log("in addFavorite: ", e.target.value);
 	var str = e.target.value;
 
 	if (window.XMLHttpRequest) {
@@ -103,11 +102,9 @@ function addFavorite(e) {
 
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-
+			console.log(xmlhttp.responseText);
 		}
 	};
-	console.log(document.getElementById("loggedInHidden").value)
-	console.log(document.getElementById("userHidden").value);
 	if (document.getElementById("loggedInHidden").value == "true") {
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
@@ -117,9 +114,6 @@ function addFavorite(e) {
 	} else {
 		alert("You must be logged in to favorite an article");
 	}
-
-
-
 }
 
 function login(){
