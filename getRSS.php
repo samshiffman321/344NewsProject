@@ -26,6 +26,7 @@
   echo '<ul class="bullet-none">';
     foreach ($entries as $entry):
       echo '<li>';
+      echo '<button type="submit" formmethod="post" formaction="<?php echo $_SERVER['PHP_SELF']; ?>" onclick="javascript:addFavorite()">Favorite</button>';
         echo '<ul class="bullet-none">';
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';

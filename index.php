@@ -84,6 +84,29 @@ function showRSS() {
 	xmlhttp.send();
 }
 
+function addFavorite() {
+	console.log("in addFavorite");
+	var str = "";
+
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+		}
+	};
+	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+	xmlhttp.send();
+}
+
 function login(){
 	console.log("attempting login");
 	var username = document.getElementById("username").value;
