@@ -81,6 +81,7 @@ function showRSS() {
 			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
 		}
 	};
+	console.log(document.getElementById("userHidden").value);
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/getRSS.php?q=" + str;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -105,15 +106,12 @@ function addFavorite(e) {
 		}
 	};
 	console.log(document.getElementById("loggedInHidden").checked)
-	if (document.getElementById("loggedInHidden").checked){
-		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
-		xmlhttp.open("GET",url,true);
-		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-		xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-		xmlhttp.send();
-	} else {
-		alert("You must be logged in to favorite an article.")
-	}
+	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+	xmlhttp.send();
+
 
 }
 
