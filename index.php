@@ -107,7 +107,7 @@ function addFavorite(e) {
 	};
 	if (document.getElementById("loggedInHidden").value == "true") {
 		var str = "user=" + document.getElementById("userHidden").value;
-		str += "&link=" + e.target.value;
+		str += "&link='" + e.target.value + "'";
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
 		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
