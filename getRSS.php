@@ -27,8 +27,9 @@
     foreach ($entries as $entry):
       echo '<li>';
       echo '<div class="row">';
-      echo '<button class="col-1" type="submit" formmethod="post" onclick="javascript:addFavorite()">Favorite</button>';
-        echo '<ul class="bullet-none col-11">';
+
+      echo '<div class="col-2"><button type="submit" formmethod="post" onclick="javascript:addFavorite()">Favorite</button></div>';
+        echo '<ul class="bullet-none col-10">';
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';
           echo '<li><a href="' . $entry->link . '">' . $entry->link . '</a></li></br>';
