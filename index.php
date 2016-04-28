@@ -85,8 +85,8 @@ function showRSS() {
 }
 
 function addFavorite(e) {
-	console.log("in addFavorite: ", e.target);
-	var str = "";
+	console.log("in addFavorite: ", e.target.id);
+	var str = e.target.id;
 
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
