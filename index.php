@@ -91,7 +91,7 @@ function showRSS() {
 }
 
 function addFavorite(e) {
-	var str = e.target.value;
+
 
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -106,6 +106,8 @@ function addFavorite(e) {
 		}
 	};
 	if (document.getElementById("loggedInHidden").value == "true") {
+		var str = "user=" + document.getElementById("userHidden").value;
+		str += "&link=" + e.target.value;
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
 		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -162,21 +164,6 @@ function newUser() {
 
 }
 
-function changeForms() {
-	console.log("attempting to change forms");
-	var loginForm = document.getElementById("login");
-	var newUserForm = document.getElementById("newUser");
-
-	if (loginForm.getAttribute("hidden") == "true"){
-		console.log("showing login form");
-		loginForm.setAttribute("hidden","false");
-		newUserForm.setAttribute("hidden","true");
-	} else {
-		console.log("showing new user form");
-		loginForm.setAttribute("hidden","true");
-		newUserForm.setAttribute("hidden","false");
-	}
-}
 
 
 </script>
