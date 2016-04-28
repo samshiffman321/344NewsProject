@@ -104,6 +104,7 @@ function addFavorite(e) {
 
 		}
 	};
+	console.log(document.getElementById("loggedInHidden").checked)
 	if (document.getElementById("loggedInHidden").checked == "true"){
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
