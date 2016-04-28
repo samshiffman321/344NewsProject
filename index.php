@@ -11,6 +11,10 @@
 		<h1>RSS Feed</h1>
 	</div>
 
+<form id="hidden" hidden="true">
+	<input type="checkbox" id="loggedInHidden" checked="false" hidden="true">
+	<input type="text" id="userHidden" value="">
+</form>
 <div class="row">
 		<div class="col-3">
 			<form id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -100,11 +104,16 @@ function addFavorite(e) {
 
 		}
 	};
-	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
-	xmlhttp.open("GET",url,true);
-	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-	xmlhttp.send();
+	if (document.getElementById("loggedInHidden").checked){
+		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
+		xmlhttp.open("GET",url,true);
+		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+		xmlhttp.send();
+	} else {
+		alert("You must be logged in to favorite an article.")
+	}
+
 }
 
 function login(){
@@ -130,7 +139,8 @@ function login(){
 					document.getElementById("password").value = "";
 					document.getElementById("password").blur();
 					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
-					document.getElementById("login").setAttribute("hidden","true");
+					document.getElementById("loggedInHidden").checked = true;
+					document.getElementById("userHidden").value = uname;
 					var d = new Date();
 					if (document.cookie.length > 0 ){
 						document.cookie = username + "=" + d.toUTCString();
