@@ -19,7 +19,7 @@
       echo '<li>';
       echo '<div class="row">';
 
-      echo '<div class="col-2"><button type="submit" formmethod="post" onclick="javascript:addFavorite()">Favorite</button></div>';
+      echo '<div class="col-2"><button type="submit" formmethod="post" onclick="javascript:addFavorite(this)" value="' . $entry->link . '">Favorite</button></div>';
         echo '<ul class="bullet-none col-10">';
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';

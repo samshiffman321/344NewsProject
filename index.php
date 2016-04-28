@@ -84,8 +84,8 @@ function showRSS() {
 	xmlhttp.send();
 }
 
-function addFavorite() {
-	console.log("in addFavorite");
+function addFavorite(element) {
+	console.log("in addFavorite: ", element.id);
 	var str = "";
 
 	if (window.XMLHttpRequest) {
@@ -97,7 +97,7 @@ function addFavorite() {
 
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			
+
 		}
 	};
 	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
