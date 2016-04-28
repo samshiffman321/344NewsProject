@@ -1,5 +1,6 @@
 <?php
-  $q = $_GET["q"];
+  $q = $_GET["link"];
+  $r = $_GET["user"];
   $arr = array();
   $arr = explode('&', $q);
   $args = array();
@@ -11,7 +12,7 @@
     echo $favoritesJson;
   } else {
     foreach($args as $arg){
-      echo $arg;
+      echo "$q $r";
     }
   }
  ?>
