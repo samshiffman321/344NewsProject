@@ -8,6 +8,8 @@
   if ($favoritesJson.count > 0){
     echo $favoritesJson;
   } else {
-    echo $arr;
+    foreach ($arr as $item){
+      echo $item;
+    }
   }
  ?>
