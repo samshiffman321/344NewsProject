@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>RSS Newsfeed</title>
 	<link rel="stylesheet" type="text/css" href="./shiffman_framework.css">
+	<link rel="stylesheet" type="text/css" href="./rss.css">
+
 
 </head>
 <body>
@@ -25,11 +27,13 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
 			<form id="login" onsubmit="javascript:login(); return false;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<h3>Login</h3></br>
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
 			</form>
 			<form id="newUser" onsubmit="javascript:newUser(); return false;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<h3>Create User</h3></br>
 				<label>Username: </label><input type="text" id="newusername" name="username"></br>
 				<label>Password: </label><input type="password" id="newpassword" name="password"></br>
 				<input type="submit" value="Create" name="Create">
@@ -51,6 +55,7 @@ var checkboxes = document.getElementsByClassName("checkbox");
 for (var i = 0; i < checkboxes.length; i++){
 	checkboxes[i].addEventListener('click', showRSS);
 }
+
 
 function showRSS() {
 	console.log("in showRSS");
@@ -108,6 +113,7 @@ function addFavorite(e) {
 		}
 	};
 	if (document.getElementById("loggedInHidden").value == "true") {
+		var clickedOn = document.getElementById(e.target);
 		var str = document.getElementById("userHidden").value + "," + e.target.value;
 		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addFavorite.php?q=" + str;
 		xmlhttp.open("GET",url,true);
