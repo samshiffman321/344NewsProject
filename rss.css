@@ -6,6 +6,10 @@ form {
   text-align: center;
 }
 
+.favorite {
+  font-size: 150%;
+}
+
 .rssEntry {
   border: 2px solid #ab8b74;
   margin: 5px 5%;

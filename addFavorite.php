@@ -2,9 +2,14 @@
 
   $q = $_GET['q'];
   $arr = array();
-  $arr = explode(',', $q);
+  $arr = explode(';', $q);
   $user = $arr[0];
-  $link = $arr[1];
+  $vars = array_slice($arr, 1);
+  $entry = json_encode($vars);
+  $entry = json_decode($entry);
+  // echo var_dump($entry);
+  // $link = $arr[1];
+  // $entry = json_decode($link);
   $serv = '/home/spring2014/sas5057/public_html/344NewsProject';
   // $serv = 'localhost:8888/344NewsProject';
   $url =  $serv . '/favorites.json';
@@ -15,7 +20,7 @@
     $current = file_get_contents($url);
 
     if ($current == "null"){
-      $write = array(array("user" => $user, "favorites" => array(0 => $link)));
+      $write = array(array("user" => $user, "favorites" => array(0 => $entry)));
       $final = json_encode($write, true);
       $res = file_put_contents($url,$final);
       echo $res;
@@ -33,13 +38,13 @@
           $new = array();
           if ($count == 1){
             $new[0] = $favorites[0];
-             if (!in_array($link, array_values($favorites))) $new[1] = $link;
+             if (!in_array($entry, array_values($favorites))) $new[1] = $entry;
           } else {
             for ($i = 0; $i < $count; $i++){
                $new[$i] = $favorites[$i];
             }
 
-            if (!in_array($link, array_values($favorites))) $new[$count] = $link;
+            if (!in_array($entry, array_values($favorites))) $new[$count] = $entry;
           }
 
           if (count($json) == 1) {
@@ -50,7 +55,7 @@
       $final = json_encode($write, true);
       $res = file_put_contents($url, $final);
     } else {
-      $write = array(array("user" => $user, "favorites" => array(0 => $link)));
+      $write = array(array("user" => $user, "favorites" => array(0 => $entry)));
       $final = json_encode($write, true);
       $res = file_put_contents($url,$final);
     }
