@@ -103,6 +103,9 @@ function addFavorite(e) {
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			console.log(xmlhttp.responseText);
+			e.target.style.color = "blue";
+			e.target.innerHTML = "&#9733";
+
 		}
 	};
 	if (document.getElementById("loggedInHidden").value == "true") {
