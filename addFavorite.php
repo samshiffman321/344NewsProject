@@ -8,7 +8,7 @@
   $serv = '/home/spring2014/sas5057/public_html/344NewsProject';
   // $serv = 'localhost:8888/344NewsProject';
   $url =  $serv . '/favorites.json';
-
+  begin:
   if (!is_writable($url)) { // Test if the file is writable
       echo "Cannot write to {$url}";
   } else {
@@ -53,6 +53,9 @@
       $write = array(array("user" => $user, "favorites" => array(0 => $link)));
       $final = json_encode($write, true);
       $res = file_put_contents($url,$final);
+    }
+    if (filesize($url) == 4) {
+      goto begin;
     }
     echo $res;
   }
