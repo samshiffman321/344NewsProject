@@ -13,7 +13,7 @@
 
 <form id="hidden" hidden="true">
 	<input type="text" id="loggedInHidden" hidden="true" value="">
-	<input type="text" id="userHidden" value="" hidden="true">
+	<input type="text" id="userHidden" hidden="true" value="">
 
 </form>
 <div class="row">
@@ -24,15 +24,14 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
 			</form>
-			<form id="login" onsubmit="javascript:login(); return false;">
+			<form id="login" onsubmit="javascript:login(); return false;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<label>Username: </label><input type="text" id="username" name="username"></br>
 				<label>Password: </label><input type="password" id="password" name="password"></br>
 				<input type="submit" value="Login" name="Login">
 			</form>
-			<form id="newUser" onsubmit="javascript:newUser(); return false;">
-				<label>Username: </label><input type="text" id="username" name="username"></br>
-				<label>Password: </label><input type="password" id="password" name="password"></br>
-				<label>Retype Password: </label><input type="password" id="passwordConfirm" name="passwordConfirm"></br>
+			<form id="newUser" onsubmit="javascript:newUser(); return false;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<label>Username: </label><input type="text" id="newusername" name="username"></br>
+				<label>Password: </label><input type="password" id="newpassword" name="password"></br>
 				<input type="submit" value="Create" name="Create">
 			</form>
 			<div id="loginOutput">
@@ -122,8 +121,67 @@ function addFavorite(e) {
 
 function login(){
 	console.log("attempting login");
-	var username = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
+	var uname = document.getElementById("username").value;
+	var pword = document.getElementById("password").value;
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			var username = document.getElementById("username").value;
+			console.log(xmlhttp.responseText);
+			if(xmlhttp.responseText == 1){
+
+					document.getElementById("username").value = "";
+					document.getElementById("password").value = "";
+					document.getElementById("password").blur();
+					var cookie = document.cookie.split(";");
+					console.log(cookie);
+					var lastLogin = "";
+					var str = cookie.forEach(function(data){
+						if (data.includes(username)) {
+							lastLogin = data.split("=")[1];
+						}
+					});
+					console.log(lastLogin);
+					document.getElementById("loginOutput").innerHTML = "Last Login was: " + lastLogin;
+
+					document.getElementById("loggedInHidden").value = "true";
+					document.getElementById("userHidden").value = username;
+
+					var d = new Date();
+					if (document.cookie.length > 0 ){
+						document.cookie = username + "=" + d.toUTCString() + "=";
+					} else  {
+						document.cookie = username + "=" + d.toUTCString();
+					}
+
+			} else {
+				document.getElementById("loginOutput").innerHTML = "Login Failed";
+
+			}
+		}
+	};
+
+	var str = uname + "," + pword;
+	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/login.php?q=" + str;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlhttp.send();
+}
+
+function checkUsername(username, check) {
+    return username.includes(check);
+}
+
+function newUser() {
+	console.log("attempting new user");
+	var username = document.getElementById("newusername").value;
+	var password = document.getElementById("newpassword").value;
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
@@ -132,19 +190,13 @@ function login(){
 	}
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			var xml = xmlhttp.responseXML;
-			var usernames = xml.getElementsByTagName("username");
-			var passwords = xml.getElementsByTagName("password");
-			for (var i = 0; i < usernames.length; i++){
-				var uname = usernames[i].innerHTML;
-				var pword = passwords[i].innerHTML;
-				if (uname == username && pword == password){
-					document.getElementById("username").value = "";
-					document.getElementById("password").value = "";
-					document.getElementById("password").blur();
-					document.getElementById("loginOutput").innerHTML = "Last Login was: " + document.cookie.split("=")[1];
-					document.getElementById("loggedInHidden").value = "true";
-					document.getElementById("userHidden").value = uname;
+			console.log(xmlhttp.responseText);
+			if(xmlhttp.responseText == 1){
+
+					document.getElementById("newusername").value = "";
+					document.getElementById("newpassword").value = "";
+					document.getElementById("newpassword").blur();
+					document.getElementById("loginOutput").innerHTML = "User Created, please log in above to favorite articles";
 
 					var d = new Date();
 					if (document.cookie.length > 0 ){
@@ -152,18 +204,22 @@ function login(){
 					} else  {
 						document.cookie = username + "=" + d.toUTCString();
 					}
-					return true;
-				}
+
+			} else {
+				document.getElementById("loginOutput").innerHTML = "Create user Failed";
+
 			}
 		}
-	};
-	xmlhttp.open("GET","./users.xml",true);
+	}
+
+
+	var uname = document.getElementById("newusername").value;
+	var pword = document.getElementById("newpassword").value;
+	var str = uname + "," + pword;
+	var url = "http://www.se.rit.edu/~sas5057/344NewsProject/addUser.php?q=" + str;
+	xmlhttp.open("GET",url,true);
 	xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.send();
-}
-
-function newUser() {
-
 }
 
 
