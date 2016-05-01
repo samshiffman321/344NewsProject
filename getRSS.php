@@ -1,10 +1,16 @@
 <?php
   $q = $_GET["q"];
+  if ($q == "") {
+    echo "";
+    exit();
+  }
   $feeds = array();
   $feeds = explode(',',$q);
 
-
-
+  $serv = '/home/spring2014/sas5057/public_html/344NewsProject';
+  // $serv = 'localhost:8888/344NewsProject';
+  $url =  $serv . '/favorites.json';
+  $current = json_decode($url, true);
 
   $entries = array();
   foreach($feeds as $feed) {
@@ -19,14 +25,17 @@
       // echo var_dump($entry);
       // $test = json_encode($entry);
       // echo $test;
-      $str = "title={$entry->title};pubdate={$entry->pubDate};link={$entry->link};description={$entry->description}";
-      
+      $desc = $entry->description;
+      $desc = htmlspecialchars($desc);
+      $str = "title={$entry->title};pubdate={$entry->pubDate};link={$entry->link};description=$desc";
+
       echo '<li>';
 
       echo '<div class="row rssEntry" name="' . $entry->link . '">';
 
         echo '<ul class="bullet-none">';
-        echo '<div><button class="favorite" type="submit" formmethod="post" onclick="javascript:addFavorite(event)" value="' . $str . '">&#9734</button></div>';
+          echo '<div><button class="favorite" type="submit" formmethod="post" onclick="javascript:addFavorite(event)" value="' . $str . '">&#9734</button></div>';
+
           echo '<li><h2>' . $entry->title . '</h2></li>';
           echo '<li>' . $entry->pubDate . '</li>';
           echo '<li><a href="' . $entry->link . '">' . $entry->link . '</a></li></br>';

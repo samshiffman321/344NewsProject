@@ -5,6 +5,7 @@
 	<title>RSS Newsfeed</title>
 	<link rel="stylesheet" type="text/css" href="./shiffman_framework.css">
 	<link rel="stylesheet" type="text/css" href="./rss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 
 </head>
@@ -24,7 +25,9 @@
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://sports.espn.go.com/espn/rss/news"><label>ESPN</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"><label>NYT</label><br/>
 				<input type="checkbox" class="checkbox" name="check_list[]" value="http://rss.cnn.com/rss/cnn_topstories.rss"><label>CNN</label><br/>
-				<input type="checkbox" class="checkbox" name="check_list[]" value="http://www.wired.co.uk/news/rss"><label>WIRED</label><br/>
+			</form>
+			<form id="showFavoritesForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<input type="button" onclick="javascript:showFavorites(); return false;" value="Show Favorites">
 			</form>
 			<form id="login" onsubmit="javascript:login(); return false;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<h3>Login</h3></br>
@@ -84,6 +87,7 @@ function showRSS() {
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+			// showFavorites();
 		}
 	};
 
@@ -93,6 +97,42 @@ function showRSS() {
 	xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xmlhttp.send();
 }
+
+function showFavorites() {
+	console.log("in showFavorites");
+
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+			var checkboxes = document.getElementsByClassName("checkbox");
+			for (var i = 0; i < checkboxes.length; i++){
+				checkboxes[i].checked = false;
+			}
+
+		}
+	};
+
+
+	if (document.getElementById("loggedInHidden").value == "true") {
+		var str = document.getElementById("userHidden").value;
+		var url = "http://www.se.rit.edu/~sas5057/344NewsProject/showFavorites.php?q=" + str;
+		xmlhttp.open("GET",url,true);
+		xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+		xmlhttp.send();
+	} else {
+		alert("You must be logged in to view favorites");
+	}
+
+}
+
 
 function addFavorite(e) {
 
@@ -108,6 +148,7 @@ function addFavorite(e) {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			console.log(xmlhttp.responseText);
 			e.target.style.color = "blue";
+			e.target.disabled = true;
 			e.target.innerHTML = "&#9733";
 
 		}
@@ -124,6 +165,8 @@ function addFavorite(e) {
 		alert("You must be logged in to favorite an article");
 	}
 }
+
+
 
 function login(){
 	console.log("attempting login");
